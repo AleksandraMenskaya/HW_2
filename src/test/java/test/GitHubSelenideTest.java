@@ -21,6 +21,16 @@ public class GitHubSelenideTest {
         $("#wiki-tab").click();
         $("#wiki-pages-filter").setValue("Softassertions").pressEnter();
         $("[href='/selenide/selenide/wiki/SoftAssertions']").click();
-        $("#user-content-3-using-junit5-extend-test-class+div").$("pre").shouldHave(text("@ExtendWith({SoftAssertsExtension.class}"));
+        $("#user-content-3-using-junit5-extend-test-class+div").$("pre").shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
+                "class Tests {\n" +
+                "  @Test\n" +
+                "  void test() {\n" +
+                "    Configuration.assertionMode = SOFT;\n" +
+                "    open(\"page.html\");\n" +
+                "\n" +
+                "    $(\"#first\").should(visible).click();\n" +
+                "    $(\"#second\").should(visible).click();\n" +
+                "  }\n" +
+                "}"));
     }
 }
